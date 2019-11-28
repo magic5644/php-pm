@@ -20,7 +20,7 @@ pipeline {
         }
         stage('phpunit') {
             steps {
-                    withDockerContainer(args: '-v /project-root:/project-root', image: 'php:latest', toolName: 'myDocker') {
+                    withDockerContainer(args: '-v /project-root:/project-root', image: 'php:5.6', toolName: 'myDocker') {
                     sh './vendor/bin/phpunit --verbose -c phpunit.xml.dist'
                 }
             }
