@@ -9,10 +9,17 @@ pipeline {
             }
            
         }
+        stage('composer') {
+            steps {
+                    withDockerContainer(args: '-v /project-root:/project-root', image: 'composer:latest', toolName: 'myDocker') {
+                    sh 'composer install'
+                }
+            }
+           
+        }
         stage('phpunit') {
             steps {
                     withDockerContainer(args: '-v /project-root:/project-root', image: 'php:latest', toolName: 'myDocker') {
-                    sh './composer install'
                     sh './vendor/bin/phpunit --verbose -c phpunit.xml.dist'
                 }
             }
