@@ -12,7 +12,7 @@ pipeline {
         stage('composer') {
             steps {
                     withDockerContainer(args: '-v /project-root:/project-root', image: 'composer:latest', toolName: 'myDocker') {
-                        sh 'composer update'
+                        sh 'composer update --ignore-platform-reqs'
                         sh 'composer install --ignore-platform-reqs'
                 }
             }
