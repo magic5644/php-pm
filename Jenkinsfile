@@ -33,6 +33,11 @@ pipeline {
             }
            
         }
+        post {
+        always {
+            junit 'junit-logfile.xml'
+        }
+    }
     
     }
 }
