@@ -12,7 +12,8 @@ pipeline {
         stage('composer') {
             steps {
                     withDockerContainer(args: '-v /project-root:/project-root', image: 'composer:latest', toolName: 'myDocker') {
-                    sh 'composer install'
+                        sh 'composer update'
+                        sh 'composer install'
                 }
             }
            
