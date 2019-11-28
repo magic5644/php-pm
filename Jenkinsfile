@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Sonar') {
             steps {
-                    withDockerContainer(args: '-v /project-root:/project-root', image: 'nikhuber/sonar-scanner:latest', toolName: 'myDockerSonarq') {
+                    withDockerContainer(args: '-v /project-root:/project-root', image: 'nikhuber/sonar-scanner:latest', toolName: 'myDocker') {
                     sh 'sonar-scanner'
                 }
             }
