@@ -11,7 +11,7 @@ pipeline {
         }
         stage('phpunit') {
             steps {
-                    withDockerContainer(args: '-v /project-root:/project-root', image: 'php:latest', toolName: 'myDockerPhp') {
+                    withDockerContainer(args: '-v /project-root:/project-root', image: 'php:latest', toolName: 'myDocker') {
                     sh 'composer install'
                     sh 'vendor/bin/phpunit'
                 }
