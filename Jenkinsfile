@@ -1,14 +1,6 @@
 pipeline {
     agent any
     stages {
-        stage('Sonar') {
-            steps {
-                    withDockerContainer(args: '-v /project-root:/project-root', image: 'nikhuber/sonar-scanner:latest', toolName: 'myDocker') {
-                    sh 'sonar-scanner'
-                }
-            }
-           
-        }
         stage('composer') {
             steps {
                     withDockerContainer(args: '-v /project-root:/project-root', image: 'composer:latest', toolName: 'myDocker') {
@@ -32,6 +24,14 @@ pipeline {
                 step([$class: 'CloverPublisher', cloverReportDir: '/src', cloverReportFileName: 'clover.xml']) 
             }
         
+        }
+        stage('Sonar') {
+            steps {
+                    withDockerContainer(args: '-v /project-root:/project-root', image: 'nikhuber/sonar-scanner:latest', toolName: 'myDocker') {
+                    sh 'sonar-scanner'
+                }
+            }
+           
         }
     
     }
