@@ -9,5 +9,14 @@ pipeline {
             }
            
         }
+        stage('phpunit') {
+            steps {
+                    withDockerContainer(args: '-v /project-root:/project-root', image: 'php:latest', toolName: 'myDockerPhp') {
+                    sh 'composer install'
+                    sh 'vendor/bin/phpunit'
+                }
+            }
+           
+        }
     }
 }
